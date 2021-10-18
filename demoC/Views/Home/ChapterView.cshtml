@@ -1,0 +1,434 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <!-- start sidebar -->
+    <div id="sideBar" class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 md:-ml-64 md:fixed md:top-0 md:z-30 md:h-screen md:shadow-xl animated faster">
+
+
+        <!-- sidebar content -->
+        <div class="flex flex-col">
+
+            <!-- sidebar toggle -->
+            <div class="text-right hidden md:block mb-4">
+                <button id="sideBarHideBtn">
+                    <i class="fad fa-times-circle"></i>
+                </button>
+            </div>
+            <!-- end sidebar toggle -->
+            <!-- button -->
+            <a href="#" style="background-color:aquamarine" class="btn" data-bs-toggle="modal" data-bs-target="#newCourceModal"> Create new Cource</a>
+            <!-- end button -->
+            <!-- Modal new Cource -->
+            <div class="modal fade" id="newCourceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h5" id="exampleModalLabel">Create new Cource</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="h5">Enter Name of Cource.</p>
+                            <div style="display:flex; margin-bottom:25px">
+                                <input type="text" id="fname" name="firstname" placeholder="Your cource name..">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+            <!-- Modal new Chapter -->
+            <div class="modal fade" id="newChapterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h5" id="exampleModalLabel">Create new Chapter</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="h5">Enter Name of Chapter.</p>
+                            <div style="display:flex; margin-bottom:25px">
+                                <input type="text" id="fname" name="firstname" placeholder="Your Chapter name..">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+            <!-- Modal Edit -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h5" id="exampleModalLabel">Edit Course</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="h5"> New Name of Course.</p>
+                            <div style="display:flex; margin-bottom:25px">
+                                <input type="text" id="fname" name="firstname" placeholder="Your Coursw name..">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Save Changed</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+            <!-- Modal Confirm -->
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title h5" id="exampleModalLabel">Delete Course</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="h5"> Are you Sure</p>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Ok</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+            <!-- link -->
+
+            <a style="margin-top:10px" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+                <i  class="fas fa-graduation-cap"></i>
+                My Course
+            </a>
+            <!-- end link -->
+            <div class="layout-content">
+                @*<div class="dropdown">
+                        <button class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            MAS (5 chapter)
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>*@
+               
+                    <div style="display:flex">
+                        <details close>
+                            <summary>
+
+                                MAS101
+                                <i class="ph-caret-down-bold"></i>
+                            </summary>
+                            <div class="layout-cource">
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 1: Dice </a>
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 2: Coin </a>
+                                <button data-bs-toggle="modal" data-bs-target="#newChapterModal" style="color:blueviolet">
+                                    + Add New Chapter
+                                </button>
+                            </div>
+                        </details>
+                        <div style="margin-left: auto; height: fit-content;" class="dropdown">
+                            <button id="dropdownMenuEdit" data-bs-toggle="dropdown"><i class="fas fa-edit"></i></button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuEdit">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal">Rename</a> </li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete  </a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div style="display:flex">
+                        <details close>
+                            <summary>
+
+                                VNR201
+                                <i class="ph-caret-down-bold"></i>
+                            </summary>
+                            <div class="layout-cource">
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 1: HCM  </a>
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 2: VNCH </a>
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 3: XHCN </a>
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 4: Mac Lenin  </a>
+                                <button data-bs-toggle="modal" data-bs-target="#newChapterModal" style="color:blueviolet">
+                                    + Add New Chapter
+                                </button>
+                            </div>
+                        </details>
+                        <div style="margin-left: auto; height: fit-content;" class="dropdown">
+                            <button id="dropdownMenuEdit" data-bs-toggle="dropdown"><i class="fas fa-edit"></i></button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuEdit">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal">Rename</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete  </a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="display:flex">
+                        <details close>
+                            <summary>
+
+                                MAD101
+                                <i class="ph-caret-down-bold"></i>
+                            </summary>
+                            <div class="layout-cource">
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 1: Matrix  </a>
+                                <button data-bs-toggle="modal" data-bs-target="#newChapterModal" style="color:blueviolet">
+                                    + Add New Chapter
+                                </button>
+                            </div>
+                        </details>
+                        <div style="margin-left: auto; height: fit-content;" class="dropdown">
+                            <button id="dropdownMenuEdit" data-bs-toggle="dropdown"><i class="fas fa-edit"></i></button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuEdit">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal">Rename</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="display:flex">
+                        <details close>
+                            <summary>
+
+                                MAE101 (5 Chapter)
+                                <i class="ph-caret-down-bold"></i>
+                            </summary>
+                            <div class="layout-cource">
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 1: Tich Phan </a>
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 2: Dao Ham    </a>
+                                <a class=" text_overflow" href="~/Home/ChapterView"> Chapter 3: Giai Tich  </a>
+                                <button data-bs-toggle="modal" data-bs-target="#newChapterModal" style="color:blueviolet">
+                                    + New Chapter
+                                </button>
+                            </div>
+                        </details>
+                        <div style="margin-left: auto; height: fit-content;" class="dropdown">
+                            <button id="dropdownMenuEdit" data-bs-toggle="dropdown"><i class="fas fa-edit"></i></button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuEdit">
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal">Rename</a><i class="fas fa-trash-alt"></i></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete  </a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+              
+            </div>
+
+        </div>
+        <!-- end sidebar content -->
+
+    </div>
+    <!-- end sidbar -->
+    <div class="bg-gray-100 flex-1 p-6 md:mt-16">
+        <!-- start navbar -->
+
+        <div style="  height: 90px;">
+            <div style="display: flex; height: 40px;">
+                <h1  class="h5 mg-top">MAS -> Chapter 1</h1>
+                <!-- Example single danger button -->
+
+                <p>&nbsp;</p>
+                <div style="display: flex; margin-left: auto;">
+                   
+                    <button class="btn-indigo mg_btn">New Test</button>
+                    <button type="button" class="btn-indigo mg_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        New Question
+                    </button>
+
+                    <button class="btn-indigo">Delete</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- end navbar -->
+        <!-- General Report -->
+        <!-- Modal new Question -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title h5" id="exampleModalLabel">Create new Question</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="h5">Choose type of question.</p>
+                        <div style="display:flex; margin-bottom:25px">
+
+                            <a href="~/Question/MultipleChoice">Mutiplechoice</a>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        @*<button type="button" class="btn btn-primary">Create Question</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+        <div class="block-search-dropdown">
+            <div class="search-size text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:pb-10 md:mb-10 md:border-b md:border-gray-200">
+
+                <div class="mr-2 transition duration-500 px-3 border-b"> <form action="" class="flex">
+                    <input class="search-box flex-1" type="text" placeholder="search"> 
+                    <button type="submit" class="search-box"> <i class="fad fa-search"></i> </button> </form> </div>
+            </div>
+            <div class="btn-group mg-left">
+                <button type="button" style="height: 40px; background-color: #667eea; color: aliceblue; " class="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Question Type
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Multiple Choice</a></li>
+                    <li><a class="dropdown-item" href="#">Matching</a></li>
+                    <li><a class="dropdown-item" href="#">Reading</a></li>
+                    <li><a class="dropdown-item" href="#">Indicate Mistake</a></li>
+                    <li><a class="dropdown-item" href="#">Short Answer</a></li>
+                    <li><a class="dropdown-item" href="#">Fill Blank</a></li>
+                </ul>
+            </div>
+        </div>
+      
+
+        <div class="tb-mg-top">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col">No</th>
+                        <td scope="col"> </td>
+                        <th style="width: 47%;" scope="col">Question</th>
+                       
+                        <th scope="col">Type</th>
+                        <th scope="col">Mark</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <th scope="row">1</th>
+                        <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                        <td><a href="~/Question/Edit" type="button">How many tree in the garden?</a></td>
+                      
+                        <td>Multiple Choice</td>
+                        <td>1</td>
+
+                    </tr>
+                    <tr>
+
+                        <th scope="row">2</th>
+                        <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                        <td><a href="~/Question/Edit" type="button">How many tree in the forest?</a></td>
+                      
+                        <td>Short Answer</td>
+                        <td>0.5</td>
+
+                    </tr>
+                    <tr>
+
+                        <th scope="row">3</th>
+                        <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                        <td><a href="~/Question/Edit" type="button">How many tree on the beach?</a></td>
+                      
+                        <td>Multiple Choice</td>
+                        <td>1</td>
+
+
+                    </tr>
+                    <tr>
+
+                        <th scope="row">3</th>
+                        <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                        <td><a href="~/Question/Edit" type="button">How many tree on the beach?</a></td>
+                        
+                        <td>Multiple Choice</td>
+                        <td>1</td>
+
+
+                    </tr>
+                    <tr>
+
+                        <th scope="row">3</th>
+                        <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                        <td><a href="~/Question/Edit" type="button">How many tree on the beach?</a></td>
+                       
+                        <td>Multiple Choice</td>
+                        <td>1</td>
+
+
+                    </tr>
+                    <tr>
+
+                        <th scope="row">3</th>
+                        <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                        <td><a href="~/Question/Edit" type="button">How many tree on the beach?</a></td>
+                       
+                        <td>Multiple Choice</td>
+                        <td>1</td>
+
+
+                    </tr>
+                    <tr>
+
+                        <th scope="row">3</th>
+                        <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                        <td><a href="~/Question/Edit" type="button">How many tree on the beach?</a></td>
+                        
+                        <td>Multiple Choice</td>
+                        <td>1</td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+
+
+
+        @*<p style="text-align: center; margin-top: 10%; font-size: larger;">There is no Question...</p>*@
+
+
+
+
+
+
+
+
+    </div>
+
+    <!-- End General Report -->
+</body>
+</html>

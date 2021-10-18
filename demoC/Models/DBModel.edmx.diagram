@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee91b19b8c834ad3a1afdeb9ef30b703" Name="Diagram1">
+        <EntityTypeShape EntityType="QuestionBank_Demo3Model.Chapter" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuestionBank_Demo3Model.Course" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuestionBank_Demo3Model.MatchQuestion" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuestionBank_Demo3Model.Question" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuestionBank_Demo3Model.QuestionType" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="QuestionBank_Demo3Model.FK__Chapter__CID__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuestionBank_Demo3Model.FK__MatchQues__Chapt__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="QuestionBank_Demo3Model.FK__Question__Chapte__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="QuestionBank_Demo3Model.FK__Question__Course__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="QuestionBank_Demo3Model.FK__Question__Qtype__1DE57479" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

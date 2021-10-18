@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuestionBank_Demo3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ChID" />
+          </Key>
+          <Property Name="ChID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="MatchQuestion">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="ChapterId" Type="int" Nullable="false" />
+          <Property Name="ColumnA" Type="nvarchar(max)" />
+          <Property Name="ColumnB" Type="nvarchar(max)" />
+          <Property Name="Solution" Type="nvarchar(max)" />
+          <Property Name="Mark" Type="float" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QID" />
+          </Key>
+          <Property Name="QID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="ChapterID" Type="int" />
+          <Property Name="PID" Type="int" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Mark" Type="float" />
+          <Property Name="Qtype" Type="int" Nullable="false" />
+          <Property Name="MixChoice" Type="bit" />
+          <Property Name="Time" Type="int" />
+          <Property Name="ImageData" Type="varchar(max)" />
+          <Property Name="ImageSize" Type="float" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="QTypeID" />
+          </Key>
+          <Property Name="QTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Chapter__CID__1273C1CD">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MatchQues__Chapt__2B3F6F97">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+          <End Role="MatchQuestion" Type="Self.MatchQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChID" />
+            </Principal>
+            <Dependent Role="MatchQuestion">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Chapte__1BFD2C07">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ChapterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Course__1B0907CE">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Qtype__1DE57479">
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="QTypeID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="Qtype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuestionBank_Demo3ModelStoreContainer">
+          <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MatchQuestion" EntityType="Self.MatchQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Chapter__CID__1273C1CD" Association="Self.FK__Chapter__CID__1273C1CD">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Chapter" EntitySet="Chapter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MatchQues__Chapt__2B3F6F97" Association="Self.FK__MatchQues__Chapt__2B3F6F97">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="MatchQuestion" EntitySet="MatchQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Chapte__1BFD2C07" Association="Self.FK__Question__Chapte__1BFD2C07">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Course__1B0907CE" Association="Self.FK__Question__Course__1B0907CE">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Qtype__1DE57479" Association="Self.FK__Question__Qtype__1DE57479">
+            <End Role="QuestionType" EntitySet="QuestionType" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuestionBank_Demo3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ChID" />
+          </Key>
+          <Property Name="ChID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Chapter__CID__1273C1CD" FromRole="Chapter" ToRole="Course" />
+          <NavigationProperty Name="MatchQuestions" Relationship="Self.FK__MatchQues__Chapt__2B3F6F97" FromRole="Chapter" ToRole="MatchQuestion" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__Chapte__1BFD2C07" FromRole="Chapter" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Chapters" Relationship="Self.FK__Chapter__CID__1273C1CD" FromRole="Course" ToRole="Chapter" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__Course__1B0907CE" FromRole="Course" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="MatchQuestion">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="ChapterId" Type="Int32" Nullable="false" />
+          <Property Name="ColumnA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Solution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mark" Type="Double" />
+          <NavigationProperty Name="Chapter" Relationship="Self.FK__MatchQues__Chapt__2B3F6F97" FromRole="MatchQuestion" ToRole="Chapter" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QID" />
+          </Key>
+          <Property Name="QID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="ChapterID" Type="Int32" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mark" Type="Double" />
+          <Property Name="Qtype" Type="Int32" Nullable="false" />
+          <Property Name="MixChoice" Type="Boolean" />
+          <Property Name="Time" Type="Int32" />
+          <Property Name="ImageData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImageSize" Type="Double" />
+          <NavigationProperty Name="Chapter" Relationship="Self.FK__Question__Chapte__1BFD2C07" FromRole="Question" ToRole="Chapter" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Question__Course__1B0907CE" FromRole="Question" ToRole="Course" />
+          <NavigationProperty Name="QuestionType" Relationship="Self.FK__Question__Qtype__1DE57479" FromRole="Question" ToRole="QuestionType" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="QTypeID" />
+          </Key>
+          <Property Name="QTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__Qtype__1DE57479" FromRole="QuestionType" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK__Chapter__CID__1273C1CD">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MatchQues__Chapt__2B3F6F97">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+          <End Role="MatchQuestion" Type="Self.MatchQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChID" />
+            </Principal>
+            <Dependent Role="MatchQuestion">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Chapte__1BFD2C07">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ChapterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Course__1B0907CE">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question__Qtype__1DE57479">
+          <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionType">
+              <PropertyRef Name="QTypeID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="Qtype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chapters" EntityType="Self.Chapter" />
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="MatchQuestions" EntityType="Self.MatchQuestion" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
+          <AssociationSet Name="FK__Chapter__CID__1273C1CD" Association="Self.FK__Chapter__CID__1273C1CD">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Chapter" EntitySet="Chapters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MatchQues__Chapt__2B3F6F97" Association="Self.FK__MatchQues__Chapt__2B3F6F97">
+            <End Role="Chapter" EntitySet="Chapters" />
+            <End Role="MatchQuestion" EntitySet="MatchQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Chapte__1BFD2C07" Association="Self.FK__Question__Chapte__1BFD2C07">
+            <End Role="Chapter" EntitySet="Chapters" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Course__1B0907CE" Association="Self.FK__Question__Course__1B0907CE">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question__Qtype__1DE57479" Association="Self.FK__Question__Qtype__1DE57479">
+            <End Role="QuestionType" EntitySet="QuestionTypes" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuestionBank_Demo3ModelStoreContainer" CdmEntityContainer="DBModel">
+          <EntitySetMapping Name="Chapters">
+            <EntityTypeMapping TypeName="QuestionBank_Demo3Model.Chapter">
+              <MappingFragment StoreEntitySet="Chapter">
+                <ScalarProperty Name="ChID" ColumnName="ChID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="QuestionBank_Demo3Model.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchQuestions">
+            <EntityTypeMapping TypeName="QuestionBank_Demo3Model.MatchQuestion">
+              <MappingFragment StoreEntitySet="MatchQuestion">
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+                <ScalarProperty Name="ColumnA" ColumnName="ColumnA" />
+                <ScalarProperty Name="ColumnB" ColumnName="ColumnB" />
+                <ScalarProperty Name="Solution" ColumnName="Solution" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="QuestionBank_Demo3Model.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="QID" ColumnName="QID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="ChapterID" ColumnName="ChapterID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Qtype" ColumnName="Qtype" />
+                <ScalarProperty Name="MixChoice" ColumnName="MixChoice" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+                <ScalarProperty Name="ImageSize" ColumnName="ImageSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionTypes">
+            <EntityTypeMapping TypeName="QuestionBank_Demo3Model.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionType">
+                <ScalarProperty Name="QTypeID" ColumnName="QTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
